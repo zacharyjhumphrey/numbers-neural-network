@@ -1,7 +1,3 @@
-/*  TODO LIST
-      FIND THE ASSETS
-*/
-
 // REQUIRED MODULES
 const express = require('express');
 const app = express();
@@ -16,8 +12,6 @@ app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'assets'), { maxAge: 86400000 }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
-// app.use(express.static(path.join(process.cwd(), 'server/assets')));
-
 
 // BODYPARSER
 app.use(express.urlencoded({ extended: true }));
@@ -30,8 +24,14 @@ io.on('connection', function(socket) {
   console.log('client connected to server');
 
   socket.on('send_canvas', function(canvas) {
+    console.log('Recieved canvas and now will try to execute the python script');
     var spawn = require("child_process").spawn;
-    var child_process = spawn('python', ["./server/neural_network/network.py", canvas]);
+    var child_process = spawn('python', [path.join(__dirname, 'neural_network/network.py'), canvas]);
+    // console.log(path.join(__dirname, 'neural_network/network.py'));
+
+    child_process.on('exit', function(code, other) {
+      console.log(`Exit code is ${code} and other thing is ${other}`)
+    })
 
     child_process.stdout.on('data', function(data) {
       console.log(data.toString());
