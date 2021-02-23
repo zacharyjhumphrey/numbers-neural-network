@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const path = require('path');
+// const process = require('process');
 
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -14,6 +16,7 @@ http.listen(3000);
 // });
 
 // SETTING UP PAGES
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 
@@ -47,9 +50,9 @@ io.on('connection', function(socket) {
 
   socket.on('send_canvas', function(canvas) {
     var spawn = require("child_process").spawn;
-    var process = spawn('python', ["./neural_network/network.py", canvas]);
+    var child_process = spawn('python', ["./server/neural_network/network.py", canvas]);
 
-    process.stdout.on('data', function(data) {
+    child_process.stdout.on('data', function(data) {
       console.log(data.toString());
       socket.emit('number_returned', { guess: data.toString() });
     });
@@ -68,5 +71,6 @@ app.use(function (req, res, next) {
 
 // 500 PAGE
 app.use(function (err, req, res, next) {
-  res.status(500).render('error/500');
+  console.error(err);
+  res.status(500).render(__dirname + '/views/error/500');
 });

@@ -43,6 +43,7 @@ $(function() {
     event.preventDefault();
 
     const newCanvas = getCanvasData();
+    console.log(newCanvas);
     appSocket.emit('send_canvas', newCanvas);
   });
 

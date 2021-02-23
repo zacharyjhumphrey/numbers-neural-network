@@ -18,7 +18,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 pixel_count = 28
 
 # Line of code to grab the dataset
-model = tf.keras.models.load_model('neural_network/models/updated_model.h5')
+model = tf.keras.models.load_model(os.path.join(os.getcwd(), 'server/neural_network/models/updated_model.h5'))
 
 # FUNCTIONS
 # Canvas Conversion Function

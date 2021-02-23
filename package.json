@@ -20,6 +20,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node server/app",
+    "dev": "nodemon server/app",
     "test_network": "python neural_network/network.py",
     "test_server": "(npm run start) & nodemon app"
   },
