@@ -18,7 +18,9 @@
     "passport-local": "^1.0.0",
     "socket.io": "^2.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serve": "^11.3.2"
+  },
   "scripts": {
     "start": "node ./server/app",
     "dev": "nodemon ./server/app",
