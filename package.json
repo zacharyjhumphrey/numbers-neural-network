@@ -19,6 +19,7 @@
     "socket.io": "^2.4.1"
   },
   "devDependencies": {
+    "python-shell": "^2.0.3",
     "serve": "^11.3.2"
   },
   "scripts": {

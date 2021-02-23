@@ -4,6 +4,7 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const path = require('path');
+const {PythonShell} = require('python-shell');
 
 http.listen(process.env.PORT || 3000);
 
@@ -24,19 +25,32 @@ io.on('connection', function(socket) {
   console.log('client connected to server');
 
   socket.on('send_canvas', function(canvas) {
-    console.log('Recieved canvas and now will try to execute the python script');
-    var spawn = require("child_process").spawn;
-    var child_process = spawn('python', [path.join(__dirname, 'neural_network/network.py'), canvas]);
-    // console.log(path.join(__dirname, 'neural_network/network.py'));
 
-    child_process.on('exit', function(code, other) {
-      console.log(`Exit code is ${code} and other thing is ${other}`)
-    })
-
-    child_process.stdout.on('data', function(data) {
-      console.log(data.toString());
-      socket.emit('number_returned', { guess: data.toString() });
+    PythonShell.run(
+      path.join(__dirname, 'neural_network/network.py'), 
+      { args: [canvas] },
+      function (err, results) {
+        console.log(err);
+        let res = JSON.parse(results);
+        console.log(res);
+        console.log(' ');
+        socket.emit('number_returned', { guess: res });
     });
+
+
+    // console.log('Recieved canvas and now will try to execute the python script');
+    // var spawn = require("child_process").spawn;
+    // var child_process = spawn('python', [path.join(__dirname, 'neural_network/network.py'), canvas]);
+    // // console.log(path.join(__dirname, 'neural_network/network.py'));
+
+    // child_process.on('exit', function(code, other) {
+    //   console.log(`Exit code is ${code} and other thing is ${other}`)
+    // })
+
+    // child_process.stdout.on('data', function(data) {
+    //   console.log(data.toString());
+    //   socket.emit('number_returned', { guess: data.toString() });
+    // });
   });
 
   socket.on('disconnect', function() {
