@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Website</title>
+
+    <link href="assets/style/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <div class="main restrict">
+      <div class="connection nice-padding online">
+        <h4 class="connection-status">ONLINE</h4>
+      </div>
+
+      <div class="cols">
+        <div class="col col-left">
+          <canvas id="number-canvas"></canvas>
+          <form id="submit-number">
+            <input class="button" type="submit" value="Submit">
+            <input class="button clear-canvas" type="button" value="Clear">
+          </form>
+        </div>
+
+        <div class="col col-right">
+          <div class="explanation">
+            <h2>My Guess</h2>
+            <div class="guess"> </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- EXTERNAL SCRIPTS -->
+    <script src="assets/externals/socket-io/socket.io.slim.js"></script>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+  <% include ../partials/footer.ejs %>
+</html>

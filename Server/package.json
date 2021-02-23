@@ -1,0 +1,28 @@
+{
+  "name": "accuracyserver",
+  "version": "1.0.0",
+  "description": "fbla website design project",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.7.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "glob": "^7.1.6",
+    "minimatch": "^3.0.2",
+    "mongoose": "^5.7.11",
+    "nodemailer": "^4.7.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test_network": "python neural_network/network.py",
+    "test_server": "(npm run start) & nodemon app"
+  },
+  "author": "me",
+  "license": "ISC"
+}
