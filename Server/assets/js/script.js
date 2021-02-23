@@ -1,4 +1,4 @@
-const appSocket = io('http://localhost:3000');
+const appSocket = io();
 const numberCanvas = document.getElementById('number-canvas');
 const $numberCanvas = $(numberCanvas);
 const ctx = numberCanvas.getContext('2d');
