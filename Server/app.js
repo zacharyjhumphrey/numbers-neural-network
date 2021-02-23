@@ -9,7 +9,7 @@ const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-http.listen(3000);
+http.listen(process.env.PORT || 3000);
 
 // proc.execFile("neural_network/env/Scripts/activate", function() {
 //     // do stuff
