@@ -1,8 +1,8 @@
 {
-  "name": "accuracyserver",
+  "name": "number-neural-network",
   "version": "1.0.0",
   "description": "fbla website design project",
-  "main": "app.js",
+  "main": "server/app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
