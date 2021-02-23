@@ -14,8 +14,10 @@ http.listen(process.env.PORT || 3000);
 // SETTING UP PAGES
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
-// app.use(express.static('./server/assets'));
-app.use(express.static(path.join(process.cwd(), 'server/assets')));
+app.use(express.static('server/assets'));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
+// app.use(express.static(path.join(process.cwd(), 'server/assets')));
+
 
 // BODYPARSER
 app.use(express.urlencoded({ extended: true }));
